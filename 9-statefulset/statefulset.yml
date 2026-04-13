@@ -15,15 +15,15 @@ spec:
     spec:
       containers:
         - name: django-app
-          image: duvindune/repo5:v1.0
+          image: duvindune/repo2:v1
           volumeMounts:
-            - name: data
-              mountPath: /usr/share/nginx/html
+            - name: data ## (a)
+              mountPath: /data
   volumeClaimTemplates:  # to create a persistence storage for pods
     - metadata:
-        name: data
+        name: data        ## (b), a & b should same
       spec:
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes: [ "ReadWriteOnce" ] # how used by pods
         resources:
           requests:
             storage: 1Gi

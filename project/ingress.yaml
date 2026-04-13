@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: django-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: django-app
+    kubernetes.io/ingress.class: 'gce'
+    networking.gke.io/managed-certificates: django-mc
+spec:
+  rules:
+  - host: duvindu.org
+    http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: django-node-svc
+            port:
+              number: 8000
+
+  - host: www.duvindu.org
+    http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: django-node-svc
+            port:
+              number: 8000
+
+

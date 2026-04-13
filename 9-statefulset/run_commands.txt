@@ -7,7 +7,7 @@
 
 |go to web-0 pod
 > kubectl exec -it web-0 -- sh
-> echo "data from web-0" > /usr/share/nginx/html/index.html
+> echo "data from web-0" > /data/file.txt
 
 |delete that pod
 |check it get re-create as web-0

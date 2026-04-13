@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-deployment
+  labels:
+    app: django
+  annotations:
+    "kubernetes.io/change-cause": "initial state"
+spec:
+  # replicas: 5
+  selector: 
+    matchLabels: 
+      app: django      # which pods to be managed
+  template:
+    metadata:
+      labels:
+        app: django    # Ensures newly created Pods match the selector.
+    spec:
+      containers:
+      - name: django
+        image: duvindune/repo5:v1.0
+        ports:
+          - containerPort: 8000
+        resources:
+          requests:
+            cpu: "100m"        # minimum CPU guaranteed
+            memory: "128Mi"    # minimum memory guaranteed
+          limits:
+            cpu: "500m"        # maximum CPU allowed
+            memory: "256Mi"    # maximum memory allowed

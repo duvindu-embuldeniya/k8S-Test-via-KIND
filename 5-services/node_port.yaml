@@ -1,20 +1,19 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: django-svc
+  name: nginx-svc
   labels:
-    app: django-svc    # This will show Services with label app=nginx-svc
+    app: nginx-svc    # This will show Services with label app=nginx-svc
                       # kubectl get svc -l app=nginx-svc
 spec:
   type: NodePort
   ports:              
-    - port: 8000        # port on which the Service listens for incoming traffic.
+    - port: 80        # port on which the Service listens for incoming traffic.
       protocol: TCP
-      targetPort: 8000  # where traffic should re-direct
-      # nodePort: 30007 #dont need as we do port forwarding
+      targetPort: 80  # where traffic should re-direct
   selector: 
-    app: django-app        # service gonna looks pods have this label
+    app: nginx        # service gonna looks pods have this label
 
 
-#kubectl port-forward service/django-svc 8000:8000
-#http://localhost:8000
+#kubectl port-forward service/nginx-svc 8000:80
+#http://localhost:80

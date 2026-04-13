@@ -11,19 +11,19 @@ spec:
       image: duvindune/repo1:v1
       volumeMounts:
         - name: shared-storage
-          mountPath: /data1   # Writer writes data here
+          mountPath: /duvindu   # Writer writes data here
     - name: reader           # Second container (reads data)
       image: duvindune/repo2:v1
       volumeMounts:
         - name: shared-storage  # Mount the same shared volume
-          mountPath: /duvindu/niduvara      # Reader reads data from here
+          mountPath: /niduvara      # Reader reads data from here
 
 
 
 # kubectl exec -it emptydir-share-demo -c writer -- /bin/bash
-# echo "Hello from writer container" > /data/test.txt
-# cat /data/test.txt
+# echo "Hello from writer container" > /duvindu/test.txt
+# cat /duvindu/test.txt
 # exit
 
 # kubectl exec -it emptydir-share-demo -c reader -- /bin/bash
-# cat /data/test.txt
+# cat /niduvara/test.txt

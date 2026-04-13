@@ -1,7 +1,7 @@
 ///Lists all existing KIND clusters on your machine///
 kind get clusters
 
-///Deletes the specified KIND cluster (removes its containers and network)///
+///Deletes the specified KIND cluster (stops it's containers and networks)///
 kind delete cluster --name kind-3node
 
 ///Shows all Docker images stored locally///
@@ -16,7 +16,7 @@ docker rmi kindest/node:v1.30.0
 ///Deletes all stopped Docker containers///
 docker container prune
 
-///Removes all unused Docker networks.///
+///Removes all stopped Docker networks.///
 docker network prune
 
 ///Deletes all unused Docker images.///

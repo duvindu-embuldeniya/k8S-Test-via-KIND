@@ -7,18 +7,23 @@ metadata:
 spec:
   containers:
     - name: dj-app
-      image: duvindune/repo4:v1.0
+      image: duvindune/repo6:v1.0
       env:
-        # - name: SECRET_KEY # what your app (Django/nginx/etc.) will see as the env variable.
-        #   valueFrom:
-        #     configMapKeyRef:
-        #       name: dj-app # which ConfigMap to read from.
-        #       key: SECRET_KEY # which key inside that ConfigMap to use.
-        - name: SECRET_KEY
+        - name: SECRET_KEY # what your app (Django/nginx/etc.) will see as the env variable.
           valueFrom:
-            secretKeyRef:
-              name: dj-app
-              key: SECRET_KEY
+            configMapKeyRef:
+              name: dj-app # which ConfigMap to read from.
+              key: SECRET_KEY # which key inside that ConfigMap to use.
+        - name: DEBUG # what your app (Django/nginx/etc.) will see as the env variable.
+          valueFrom:
+            configMapKeyRef:
+              name: dj-app # which ConfigMap to read from.
+              key: DEBUG # which key inside that ConfigMap to use.
+        # - name: SECRET_KEY
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: dj-app
+        #       key: SECRET_KEY
       resources:
         requests:
           memory: "64Mi"

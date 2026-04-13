@@ -18,5 +18,5 @@ kubectl rollout undo deployment/nginx-deploy --to-revision=1
 kubectl scale deployment nginx-deploy --replicas=5
 
 //auto scaling (horizontal pods autoscaler)
-kubectl autoscale deployment nginx-deploy --cpu-percent=50 --min=2 --max=8
+kubectl autoscale deployment nginx-deploy --cpu-percent=50 --min=8 --max=10
 kubectl delete hpa nginx-deploy
