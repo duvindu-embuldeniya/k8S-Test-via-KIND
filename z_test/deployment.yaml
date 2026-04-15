@@ -7,7 +7,7 @@ metadata:
   annotations:
     "kubernetes.io/change-cause": "initial state"
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: django
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: django
-        image: duvindune/repo6:v1.0
+        image: duvindune/repo7:v1.0
         ports:
           - containerPort: 8000
 

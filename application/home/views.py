@@ -4,6 +4,37 @@ from django.contrib.auth.models import User, auth
 from . forms import UserRegistrationForm
 from django.contrib import messages
 
+from django.http import HttpResponse
+from django.db import connections
+from django.db.utils import OperationalError
+
+
+
+def health(request):
+    for db_name in connections:
+        try:
+            connections[db_name].cursor()
+        except OperationalError:
+            return HttpResponse("status: db down", status=503)
+
+    return HttpResponse("status: ok", status=200)
+
+def startup(request):
+    return HttpResponse("started", status=200)
+
+
+def readiness(request):
+    for db_name in connections:
+        try:
+            connections[db_name].cursor()
+        except OperationalError:
+            return HttpResponse("db down", status=503)
+
+    return HttpResponse("ready", status=200)
+
+
+def liveness(request):
+    return HttpResponse("alive", status=200)
 
 
 def home(request):

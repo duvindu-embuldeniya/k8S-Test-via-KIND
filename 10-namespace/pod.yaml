@@ -14,10 +14,14 @@ spec:
     ports:
     - containerPort: 80
 
+
 # kubectl config view
 # kubectl get namespaces
 # kubectl get pods -n dev
 # kubectl config set-context --current --namespace=dev
 # kubectl config set-context --current --namespace=default
 
+
+# kubectl exec -it nginx-pod -- /bin/bash
+# curl django-svc.dev.svc.cluster.local:8000
 

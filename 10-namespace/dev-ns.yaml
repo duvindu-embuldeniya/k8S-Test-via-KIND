@@ -4,3 +4,42 @@ metadata:
   name: dev
 
 ---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: dev-limits
+  namespace: dev
+spec:
+  limits:
+  - type: Container
+    defaultRequest:
+      cpu: "250m"
+      memory: "128Mi"
+    default:
+      cpu: "500m"
+      memory: "256Mi"
+
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: dev-quota
+  namespace: dev
+spec:
+  hard:
+    requests.cpu: "1250m"
+    requests.memory: "320Mi"
+    limits.cpu: "2500m"
+    limits.memory: "640Mi"
+
+
+# from deployment...
+        # resources:
+        #   requests:
+        #     memory: "64Mi"
+        #     cpu: "250m"
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+
+# kubectl get resourcequota
