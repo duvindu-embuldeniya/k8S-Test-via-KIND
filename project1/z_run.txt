@@ -30,10 +30,12 @@ kubectl describe ingress django-ingress
 
 
 r53 nameservers -> cloudF
+(keep proxy status down)
+
 External static ip reservation form gcp
 
 [1]ingress -> x3 annotations...///
-1. point static ip nameservers
+1. point static ip name
 2. use this lb
 3. point cert
 
@@ -42,3 +44,5 @@ use node service...///
 
 [2]node-svc manifest
 [3]cert manifest
+
+after cert got active enable proxy status of CF..//
